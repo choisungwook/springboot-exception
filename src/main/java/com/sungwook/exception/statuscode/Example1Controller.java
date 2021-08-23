@@ -27,19 +27,8 @@ public class Example1Controller {
         StudentEntity find_student = students.stream()
                 .filter(student -> student.getName().equals(name))
                 .findAny()
-                .orElse(null);
-
-        if(find_student == null){
-            throw new NotExistStudent(name);
-        }
+                .orElseThrow(() -> new NotExistStudent(name));
 
         return find_student;
     }
-
-    @GetMapping("/helloworld")
-    public String helloworld(){
-        return "helloworld";
-    }
-
-
 }
